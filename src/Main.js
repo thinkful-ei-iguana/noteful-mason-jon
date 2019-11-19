@@ -1,6 +1,7 @@
 import React from 'react';
 import Notes from './Notes';
 import Folders from './Folders';
+import Folder from './Folder';
 
 class Main extends React.Component {
   state = {
@@ -120,14 +121,17 @@ class Main extends React.Component {
     ]
     }
 
-    
+
   render() { 
     return ( 
+    <>
       <nav className="navbar" >
         <a href='/'>Noteful</a>
       </nav> 
-      <Folders />
-      <Notes />
+      <Folders folders={this.state.folders} notes={this.state.notes} />
+      <Notes notes={this.state.notes} />
+      
+    </>
       );
   }
 }
