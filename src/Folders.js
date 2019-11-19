@@ -2,11 +2,11 @@ import React from 'react';
 import Folder from './Folder';
 
 function Folders(props) {
-  console.log(props);
+  // console.log(props);
   
   const files = props.folders.map((folder, i) => 
-
-    <Folder id={folder.id} name={folder.name}  
+    <Folder id={folder.id} name={folder.name} click={props.click} 
+      
       /> 
       )
 

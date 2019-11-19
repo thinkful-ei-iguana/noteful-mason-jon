@@ -2,9 +2,11 @@ import React from 'react';
 import Notes from './Notes';
 import Folders from './Folders';
 import Folder from './Folder';
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 class Main extends React.Component {
   state = {
+    selected: false,
     "folders": [
       {
         "id": "b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1",
@@ -120,20 +122,27 @@ class Main extends React.Component {
       }
     ]
     }
-
+    handleClick = (folderId) => {
+      this.setState({selected: folderId});
+    }
 
   render() { 
+    const folderId = this.state.folders.map(folder => folder.id);
     return ( 
     <>
-      <nav className="navbar" >
-        <a href='/'>Noteful</a>
-      </nav> 
-      <Folders folders={this.state.folders} notes={this.state.notes} />
-      <Notes notes={this.state.notes} />
       
+        <nav className="navbar" >
+          <a href='/'>Noteful</a>
+        </nav> 
+      <sidebar>
+        <Route path='/folders' render={(routerProps) => 
+        <Folders folders={this.state.folders} click={this.handleClick} /> } /> 
+        <Route path='/notes' render={(routerProps) =>
+        <Notes notes={this.state.notes} folderIds ={folderId} selected={this.state.selected}/> } />
+      </sidebar>
     </>
       );
   }
 }
- 
+
 export default Main;
