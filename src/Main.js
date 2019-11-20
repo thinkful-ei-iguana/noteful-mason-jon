@@ -14,7 +14,7 @@ function Main(props) {
           <Link to='/'>Noteful</Link>
         </nav> 
 
-        <Folders folders={props.folders} click={props.handleClick} /> 
+        <Folders folders={props.folders} click={props.click} /> 
 
         <Notes notes={props.notes} selected={props.selected}/>
       

@@ -133,33 +133,31 @@ class App extends React.Component {
   render() {
     console.log(this.state.folders);
     return (
-    <>
+      <>
         <Route exact path='/'
-        render={() => {
-          console.log(1)
-          return  <Main 
-         
-          folders={this.state.folders}
-          notes={this.state.notes}
-          />} } />
+          render={() => {
+            return <Main
+
+              folders={this.state.folders}
+              notes={this.state.notes}
+            />
+          }} />
 
         <Route exact path='/folder/:folderId'
           render={(routerProps) => {
             let folderId = routerProps.match.params.folderId
-       console.log(2);
             return <Main
-             
               folders={this.state.folders}
               notes={this.state.notes}
               selected={folderId}
+              click={this.handleClick}
             />
-
-        <Route exact path='/'   
-         
-      }} />
-    
-          <Route exact path='/note/:noteId' component={Note} />
-   </>
+          }} />
+        //individual note 
+        <Route exact path="/note/:noteId" 
+          render=
+        component={Note} />
+      </>
     )
   }
 }
