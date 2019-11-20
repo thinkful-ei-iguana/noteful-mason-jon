@@ -2,6 +2,7 @@ import React from 'react';
 import Main from './Main.js';
 import Folder from './Folder';
 import Note from './Note';
+import Notes from './Notes';
 import { Route } from 'react-router-dom';
 
 
@@ -133,31 +134,41 @@ class App extends React.Component {
   render() {
     console.log(this.state.folders);
     return (
-      <>
-        <Route exact path='/'
-          render={() => {
-            return <Main
+      <div>
+      <nav>
+      <Route path='/'
+      render={() => {
+        return <Main
+          click={this.handleClick}
+          folders={this.state.folders}
+          notes={this.state.notes}
+        />
+      }} />
 
-              folders={this.state.folders}
-              notes={this.state.notes}
-            />
-          }} />
+      </nav>
 
+
+      <main>
         <Route exact path='/folder/:folderId'
           render={(routerProps) => {
             let folderId = routerProps.match.params.folderId
-            return <Main
-              folders={this.state.folders}
-              notes={this.state.notes}
-              selected={folderId}
-              click={this.handleClick}
-            />
+            const notes = this.state.notes.filter(note => note.folderId == folderId)
+            return( <Notes notes={notes} selected={this.state.selected}/>)
+             
           }} />
-        //individual note 
-        <Route exact path="/note/:noteId" 
-          render=
-        component={Note} />
-      </>
+
+        <Route exact path='/note/:noteId'
+          render={(routerProps) => {
+            let noteId = routerProps.match.params.noteId
+            const note = this.state.notes.find(note => note.id == noteId)
+            return( <Note id={note.id} content={note.content} title={note.title} modified={note.modified} notes={this.state.notes} selected={this.state.selected}/>
+            )
+          }} />
+      </main>
+
+        
+
+    </div>
     )
   }
 }

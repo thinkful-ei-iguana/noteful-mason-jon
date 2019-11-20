@@ -16,8 +16,6 @@ function Main(props) {
 
         <Folders folders={props.folders} click={props.click} /> 
 
-        <Notes notes={props.notes} selected={props.selected}/>
-      
     </>
       );
     }
