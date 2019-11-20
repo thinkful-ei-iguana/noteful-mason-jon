@@ -8,7 +8,8 @@ export default function Notes(props) {
     
   <Note id={note.id} 
         name={note.name} 
-        modified={note.modified} 
+    
+        
     
       /> 
       )

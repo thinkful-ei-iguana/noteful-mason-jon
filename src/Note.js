@@ -8,6 +8,7 @@ function Note(props) {
     <Link to={`/note/${props.id}`}>{props.name}</Link>
       <div>{props.content}</div>
       <div>{props.modified}</div>
+      
     </>
 
     );
